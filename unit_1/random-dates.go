@@ -7,7 +7,7 @@ import (
 
 var era = "AD"
 
-func main() {
+func random_dates() {
 
 	for i := 0; i < 100; i++ {
 		year := 2019 + rand.Intn(100)

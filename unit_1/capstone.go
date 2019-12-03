@@ -5,7 +5,7 @@ import (
 	"math/rand"
 )
 
-func main() {
+func capstone() {
 
 	var distance = 62100000 //distance in km to mars
 	var company = ""

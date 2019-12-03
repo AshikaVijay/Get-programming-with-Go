@@ -5,7 +5,7 @@ import (
 	"math/rand"
 )
 
-func main() {
+func guess() {
 
 	var number = 33 //number to guess
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func main() {
+func malacandra() {
 
 	const distance = 56000000
 	var time = 28 * 24 //convert days to hours

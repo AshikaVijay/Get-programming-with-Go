@@ -5,7 +5,7 @@ import (
 	"math/rand"
 )
 
-func main() {
+func piggy2() {
 
 	piggyBank := 0
 	nickels := 5
