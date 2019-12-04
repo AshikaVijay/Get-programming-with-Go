@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func main() {
+func caesar() {
 
 	message := "L fdph, L vdz, L frqtxhuhg"
 
