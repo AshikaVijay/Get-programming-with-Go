@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func main() {
+func international() {
 
 	message := "Hola Estación Espacial Internacional"
 
