@@ -9,7 +9,7 @@ import (
 // 	return (c - 'A') % 26
 // }
 
-func main() {
+func cipher() {
 
 	plainText := "your message goes here"
 	keyword := "GOLANG"

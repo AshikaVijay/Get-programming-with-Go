@@ -4,10 +4,10 @@ import (
 	"fmt"
 )
 
-func main() {
+func decipher() {
 
-	cipherText := "CSOITEUIWUIZNSROCNKFD"
-	keyword := "GOLANG"
+	cipherText := "POYBXXCIAMWHDMAUMCGSAQNUWLSBSGZ"
+	keyword := "MALINKO"
 	j := 0
 	plainText := ""
 
@@ -23,5 +23,4 @@ func main() {
 		plainText = plainText + string(c)
 	}
 	fmt.Println(plainText)
-
 }
