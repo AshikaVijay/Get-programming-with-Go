@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"time"
 )
 
 const (
@@ -27,8 +28,8 @@ func NewUniverse() Universe {
 func (u Universe) ToString() string {
 	var cell rune
 	NewArray := make([]rune, width*height)
-	for h := 0; h < height; h++ {
-		for w := 0; w < width; w++ {
+	for h := 1; h < height; h++ {
+		for w := 1; w < width; w++ {
 			if u[h][w] == true {
 				cell = '*'
 			} else {
@@ -41,9 +42,9 @@ func (u Universe) ToString() string {
 	return string(NewArray)
 }
 
-//show grid
+//clear grid
 func (u Universe) Show() {
-	fmt.Print(u.ToString())
+	fmt.Print("\x0c", u.ToString())
 }
 
 //seed 25%
@@ -53,21 +54,20 @@ func (u Universe) Seed() {
 	}
 }
 
-func (u Universe) Alive(w, h int) bool { //determines whether a cell is dead or alive
-	if h <= 0 || h > 15 {
-		fmt.Print("Please put a postive integer less than 50 \n")
-	} else {
+//determines whether a cell is dead or alive
+func (u Universe) Alive(w, h int) bool {
+	if h >= 0 || h < 15 {
 		h = h % height
 	}
 
-	if w <= 0 || w > 80 {
-		fmt.Print("Please put a postive integer less than 80 \n")
-	} else {
+	if w >= 0 || w < 80 {
 		w = w % width
 	}
+
 	return u[h][w]
 }
 
+//Change boolean to integer
 func Btoi(b bool) int {
 	if b {
 		return 1
@@ -75,7 +75,8 @@ func Btoi(b bool) int {
 	return 0
 }
 
-func (u Universe) Neighbours(w, h int) int { //counts the number of adjacent cells that are alive
+//counts the number of adjacent cells that are alive
+func (u Universe) Neighbours(w, h int) int {
 
 	var N, S, E, W, NE, SE, SW, NW bool
 
@@ -99,20 +100,34 @@ func (u Universe) Neighbours(w, h int) int { //counts the number of adjacent cel
 
 }
 
-func (u Universe) Next(w, h int) bool { //whether cell is alive or not in next generation
+//whether cell is alive or not in next generation
+func (u Universe) Next(w, h int) bool {
 
 	total := u.Neighbours(w, h)
 	return (total == 2 || total == 3) && u.Alive(w, h)
 
 }
 
+func Step(a, b Universe) {
+	for h := 1; h < height; h++ {
+		for w := 1; w < width; w++ {
+			b[h][w] = a.Next(w, h)
+		}
+	}
+}
+
 func main() {
 
-	u := NewUniverse()
-	u.Seed()
-	//u.Show()
-	u.Alive(56, 13)
-	u.Neighbours(56, 13)
-	u.Next(30, 14)
+	a := NewUniverse()
+	b := NewUniverse()
+
+	a.Seed()
+
+	for i := 1; i < 200; i++ {
+		Step(a, b)
+		a.Show()
+		time.Sleep(1 * time.Second)
+		a, b = b, a //Swap
+	}
 
 }
