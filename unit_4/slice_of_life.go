@@ -75,20 +75,20 @@ func Btoi(b bool) int {
 	return 0
 }
 
-func (u Universe) Neighbours(w, h int) int {
-	//counts the number of adjacent cells that are alive
-	var north, south, east, west, NorthEast, SouthEast, SouthWest, NorthWest bool
+func (u Universe) Neighbours(w, h int) int { //counts the number of adjacent cells that are alive
 
-	north = u.Alive(w, h+1)
-	south = u.Alive(w, h-1)
-	east = u.Alive(w+1, h)
-	west = u.Alive(w-1, h)
-	NorthEast = u.Alive(w+1, h+1)
-	SouthEast = u.Alive(w+1, h-1)
-	SouthWest = u.Alive(w-1, h-1)
-	NorthWest = u.Alive(w-1, h+1)
+	var N, S, E, W, NE, SE, SW, NW bool
 
-	list := []bool{north, south, east, west, NorthEast, NorthWest, SouthEast, SouthWest}
+	N = u.Alive(w, h+1)
+	S = u.Alive(w, h-1)
+	E = u.Alive(w+1, h)
+	W = u.Alive(w-1, h)
+	NE = u.Alive(w+1, h+1)
+	SE = u.Alive(w+1, h-1)
+	SW = u.Alive(w-1, h-1)
+	NW = u.Alive(w-1, h+1)
+
+	list := []bool{N, S, E, W, NE, NW, SE, SW}
 
 	total := 0
 	for i := 0; i < len(list); i++ {
@@ -96,18 +96,14 @@ func (u Universe) Neighbours(w, h int) int {
 	}
 
 	return total
+
 }
 
-func (u Universe) Next(w, h int) bool {
+func (u Universe) Next(w, h int) bool { //whether cell is alive or not in next generation
 
-if 
+	total := u.Neighbours(w, h)
+	return (total == 2 || total == 3) && u.Alive(w, h)
 
-//live cell with less than 2 live neighbours dies
-//a  live cell with 2 or 3 live neighbours lives on to the next generation 
-// a live cell with >3 neighbours dies
-//a dead cell with =3 neighbours becomes a live cell
-
-return next 
 }
 
 func main() {
@@ -115,7 +111,8 @@ func main() {
 	u := NewUniverse()
 	u.Seed()
 	//u.Show()
-	//u.Alive(10, 4)
-	u.Neighbours(30, 14)
+	u.Alive(56, 13)
+	u.Neighbours(56, 13)
+	u.Next(30, 14)
 
 }
