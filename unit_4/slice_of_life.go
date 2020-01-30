@@ -123,7 +123,7 @@ func main() {
 
 	a.Seed()
 
-	for i := 1; i < 200; i++ {
+	for i := 1; i < 10; i++ {
 		Step(a, b)
 		a.Show()
 		time.Sleep(1 * time.Second)
