@@ -105,14 +105,14 @@ func main() {
 		//prints every hour
 		fmt.Printf("At %2d:00 ", hour)
 
-		if hour >= sunset || hour <= sunrise {
+		if hour > sunset || hour < sunrise {
 			fmt.Println("zzzzzzzz")
 		} else {
 			i := rand.Intn(len(animals))
 			choose(animals[i])
 		}
 
-		time.Sleep(400 * time.Millisecond)
+		time.Sleep(500 * time.Millisecond)
 
 		//3, 24 hour sols
 		hour = hour + 1
