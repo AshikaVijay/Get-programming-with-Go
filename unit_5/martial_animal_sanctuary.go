@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"time"
 )
 
 //pig name, move and eat
@@ -17,21 +18,28 @@ func (p Pig) String() string {
 
 //eat method
 func (p Pig) eat() string {
-	switch rand.Int(3) {
+	switch rand.Intn(3) {
 	case 0:
 		return "wotsits"
 	case 1:
 		return "biscuits"
-	case 2:
-		return "crisps"
+	default:
+		return "chocolate"
 	}
 }
 
 func (p Pig) move() string {
-	return "shuffle"
+	switch rand.Intn(2) {
+	case 0:
+		return "taps"
+	case 1:
+		return "springs"
+	default:
+		return "slides"
+	}
 }
 
-//dinosaur
+//dinosaur name, move, eat
 type Dinosaur struct {
 	name string
 }
@@ -41,16 +49,25 @@ func (d Dinosaur) String() string {
 }
 
 func (d Dinosaur) eat() string {
-	switch rand.Int(2) {
+	switch rand.Intn(2) {
 	case 0:
 		return "gummy bears"
 	case 1:
-		return "skittles"
+		return "noodles"
+	default:
+		return "strawberry"
 	}
 }
 
 func (d Dinosaur) move() string {
-	return "stamp"
+	switch rand.Intn(2) {
+	case 0:
+		return "stamps"
+	case 1:
+		return "shuffles"
+	default:
+		return "steps"
+	}
 }
 
 type animal interface {
@@ -58,6 +75,7 @@ type animal interface {
 	move() string
 }
 
+//
 func choose(a animal) {
 	switch rand.Intn(2) {
 	case 0:
@@ -71,6 +89,7 @@ const sunrise = 6
 const sunset = 18
 
 func main() {
+
 	animals := []animal{
 		Pig{name: "Hamm"},
 		Dinosaur{name: "Rex"},
@@ -78,5 +97,37 @@ func main() {
 
 	var sol int
 	var hour int
+
+	fmt.Print("Sol 1! \n")
+
+	for {
+
+		//prints every hour
+		fmt.Printf("At %2d:00 ", hour)
+
+		if hour <= sunset || hour > sunrise {
+			i := rand.Intn(len(animals))
+			choose(animals[i])
+		} else {
+			fmt.Println("zzzzzzzz")
+		}
+
+		time.Sleep(100 * time.Millisecond)
+
+		//3, 24 hour sols
+		hour = hour + 1
+		if hour >= 24 {
+			hour = 0
+			if sol == 0 {
+				fmt.Print("Sol 2! \n")
+			} else if sol == 1 {
+				fmt.Print("Sol 3! \n")
+			}
+			sol++
+			if sol >= 3 {
+				break
+			}
+		}
+	}
 
 }
