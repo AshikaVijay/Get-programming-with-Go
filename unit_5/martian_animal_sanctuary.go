@@ -85,9 +85,6 @@ func choose(a animal) {
 	}
 }
 
-const sunrise = 6
-const sunset = 18
-
 func main() {
 
 	animals := []animal{
@@ -98,6 +95,9 @@ func main() {
 	var sol int
 	var hour int
 
+	const sunrise = 6
+	const sunset = 18
+
 	fmt.Print("Sol 1! \n")
 
 	for {
@@ -105,14 +105,15 @@ func main() {
 		//prints every hour
 		fmt.Printf("At %2d:00 ", hour)
 
-		if hour <= sunset || hour > sunrise {
+		if hour >= sunset || hour <= sunrise {
+			fmt.Println("zzzzzzzz")
+		} else {
 			i := rand.Intn(len(animals))
 			choose(animals[i])
-		} else {
-			fmt.Println("zzzzzzzz")
+
 		}
 
-		time.Sleep(100 * time.Millisecond)
+		time.Sleep(400 * time.Millisecond)
 
 		//3, 24 hour sols
 		hour = hour + 1
