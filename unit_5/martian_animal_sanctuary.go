@@ -110,7 +110,6 @@ func main() {
 		} else {
 			i := rand.Intn(len(animals))
 			choose(animals[i])
-
 		}
 
 		time.Sleep(400 * time.Millisecond)
@@ -124,7 +123,7 @@ func main() {
 			} else if sol == 1 {
 				fmt.Print("Sol 3! \n")
 			}
-			sol++
+			sol = sol + 1
 			if sol >= 3 {
 				break
 			}
