@@ -7,7 +7,7 @@ type turtle struct {
 	y int
 }
 
-func (t *turtle) up() {
+func (t *turtle) up() { //to deref a field inside the struct
 	t.y--
 }
 func (t *turtle) down() { //positive values go down
